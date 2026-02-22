@@ -489,7 +489,7 @@ document.getElementById("btnAge").onclick = function() {
 }
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 2.3](imgex/Ex4.png)
+![รูปผลการทดลองที่ 2.3](imgEx/Ex4.png)
 
 ### 2.4 Functions และ Arrow Functions
 
