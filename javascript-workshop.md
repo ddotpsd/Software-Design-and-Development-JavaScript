@@ -76,10 +76,45 @@ JavaScript สามารถเพิ่มลงในเว็บเพจไ
    - มีปุ่มเมื่อคลิกแล้วจะแสดงข้อความที่กรอกในช่องข้อความ  (สามารถใช้ document.getElementById('id ของ textbox').value เพื่อดึงข้อมูลในช่อง)
 ### บันทึกผลการทดลอง 
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ทดลอง JavaScript</title>
+</head>
+<body>
+    <!-- Inline JavaScript -->
+    <button onclick="alert('นายภูผาสุข ผาสุข')">ปุ่มที่ 1 ชื่อนศ.</button>
+
+    <!-- ทดสอบ Internal JavaScript -->
+    <button id="btn2">ปุ่มที่ 2 วันที่ปัจจุบัน</button>
+
+    <!-- ทดสอบ External JavaScript -->
+    <button id="btn3" onclick="hello3();">ปุ่มที่ 3 เวลาปัจจุบัน</button>
+
+    <!-- Internal JavaScript -->
+    <script>
+        document.getElementById('btn2').onclick = function() {
+            alert('Day/Month/Year: ' + new Date().toLocaleDateString());
+        };
+    </script>
+
+    <input type="text" id="input1" placeholder="Enter Input">
+    <button id="btnS">Show input</button>
+
+    <script>
+        document.getElementById('btnS').onclick = function() {
+            var userInput = document.getElementById('input1').value;
+            alert(userInput);
+        };
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 1](images/image.png)
+![รูปผลการทดลองที่ 1](imgEx/Ex1.png)
 
 ## การทดลองที่ 2: พื้นฐาน JavaScript
 ### 2.1 การประกาศตัวแปรและชนิดข้อมูล
@@ -134,11 +169,32 @@ let person = {
 2. สร้าง Object สำหรับเก็บข้อมูลนักศึกษา  ประกอบด้วยข้อมูล รหัสนักศึกษา, ชื่อ, สาขาวิชา, เกรดเฉลี่ย
 
 ### บันทึกผลการทดลอง 2.1
-```html
-[บันทึกโค้ด ที่นี่]
+```javascript
+let studentName = "สมชาย";
+let studentId = "68030232";
+let studentMidtermScore = 60;
+let studentFinalScore = 81;
+
+console.log("ชื่อ: " + studentName);
+console.log("รหัสนักศึกษา: " + studentId);
+console.log("คะแนนกลางภาค: " + studentMidtermScore);
+console.log("คะแนนปลายภาค: " + studentFinalScore);
+
+
+let student = {
+    name: studentName,
+    id: studentId,
+    studentMajor : "วิทยาการคอมพิวเตอร์",
+    gpa : 4.00
+};
+
+console.log("ชื่อ: " + student.name);
+console.log("รหัสนักศึกษา: " + student.id);
+console.log("สาขาวิชา: " + student.studentMajor);
+console.log("เกรดเฉลี่ย: " + student.gpa); 
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 2.1](images/image.png)
+![รูปผลการทดลองที่ 2.1](imgEx/Ex2.png)
 
 
 ### 2.2 การดำเนินการทางคณิตศาสตร์
@@ -189,11 +245,21 @@ number /= 2;          // เท่ากับ number = number / 2
 2. เขียนโปรแกรม กำหนดชื่อสินค้า ราคาสินค้า คำนวณราคาสินค้าที่รวม VAT 7% แล้วแสดงผลการคำนวณ
 
 ### บันทึกผลการทดลอง 2.2
-```html
-[บันทึกโค้ด ที่นี่]
+```javascript
+console.log("หาค่าเฉลี่ย");
+let Math = 65;
+let Science = 77;
+let English = 67;
+let average = (Math + Science + English) / 3;
+console.log("คะแนนเฉลี่ย: " + average);
+
+console.log("คำนวณสินค้า +Vat7%");
+let price = 100;
+let priceWithVat = price + (price * 0.07);
+console.log("ราคาสินค้ารวม Vat 7%: " + priceWithVat);
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 2.2](images/image.png)
+![รูปผลการทดลองที่ 2.2](imgEx/Ex3.png)
 
 ### 2.3 การควบคุมการทำงาน
 
@@ -324,10 +390,106 @@ for (let i = 1; i <= 5; i++) {
 
 ### บันทึกผลการทดลอง 2.3
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="tn">
+<head>
+    <meta charset="UTF-8">
+    
+</head>
+<body>
+    <h2>เช็คเลขคู่เลขคี่</h2>
+    <input type="text" id="num" placeholder="Enter a number">
+    <button id="btn">Check Even or Odd</button>
+    
+    <h2>for loop while loop</h2>
+    <button id="btnFor2">สูตรคูณแม่ 2</button>
+    
+    <button id="btnWhile3">สูตรคูณแม่ 3</button>
+
+
+    <h2>นับถอยหลัง 10 - 1 </h2>
+    <button id="btn10t1">นับถอยหลัง 10 - 1</button>
+
+    <h2>แบ่งช่วงวัยตาอายุ</h2>
+    <input type="text" id="age" placeholder="Enter your age">
+    <button id="btnAge">แสดงช่วงวัย</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+```javascript
+
+//หาเลขคู่และเลขคี่
+document.getElementById("btn").onclick = function() {
+    var checkv = parseInt(document.getElementById("num").value);
+    if (isNaN(checkv)) {
+        alert("กรุณาใส่ตัวเลข");
+        
+    }else if (checkv % 2 == 0){
+        alert(checkv + " เป็นเลขคู่");
+    }
+    else {
+        alert(checkv + " เป็นเลขคี่");
+    }
+}
+    
+//หาตารางสูตรคูณ แบบ for loop
+document.getElementById("btnFor2").onclick = function() {
+    var output = "";
+    for (var i = 1; i <= 12; i++) {
+        // ใช้ \n แทน <br>
+        output += "2 x " + i + " = " + (2 * i) + "\n"; 
+    }
+    alert(output);
+}
+
+//หาตารางสูตรคูณ แบบ while loop
+document.getElementById("btnWhile3").onclick = function() {
+    var output = "";
+    var i = 1;
+    while (i <= 12) {
+        output += "3 x " + i + " = " + (3 * i) + "\n";
+        i++;
+    }
+    
+    alert(output);
+}
+
+//นับถอยหลัง 10 - 1
+document.getElementById("btn10t1").onclick = function() {
+    var output = "";
+    for (var i = 10; i >= 1; i--) {
+        output += i + "\n";
+    }
+    alert(output);
+}
+
+//แบ่งช่วงวัย
+document.getElementById("btnAge").onclick = function() {
+    var age = parseInt(document.getElementById("age").value);
+    if (isNaN(age)) {
+        alert("กรุณาใส่อายุที่ถูกต้อง");
+        return;
+    }
+    var ageGroup = "";
+    if (age < 0) {
+        ageGroup = "อายุไม่ถูกต้อง";
+    } else if (age <= 12) {
+        ageGroup = "วัยเด็ก";
+    } else if (age <= 17) {
+        ageGroup = "วัยรุ่น";
+    } else if (age <= 59) {
+        ageGroup = "วัยผู้ใหญ่";
+    } else {
+        ageGroup = "วัยชรา";
+    }
+    alert("คุณอยู่ในช่วงวัย: " + ageGroup);
+}
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 2.3](images/image.png)
+![รูปผลการทดลองที่ 2.3](imgex/Ex4.png)
 
 ### 2.4 Functions และ Arrow Functions
 
