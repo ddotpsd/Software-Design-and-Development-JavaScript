@@ -601,10 +601,80 @@ process(function() {
 
 ### บันทึกผลการทดลอง 2.4.1
 ```html
-[บันทึกโค้ด ที่นี่]
+[<!DOCTYPE html>
+<html lang="tn">
+<head>
+    <meta charset="UTF-8">
+    
+</head>
+<body>
+    <h2>BMI ตัวอย่างหนัก55 สูง165</h2>
+
+    <button id="btn">BMI</button>
+    
+    <h2>ทักทายตามอายุ</h2>
+    <input type="text" id="num" placeholder="อายุของคุณ">
+    <button id="btnFor2">ทักทาย</button>
+
+
+    <h2>ตรวจสอบความยาวรหัสเกิน 8ตัวมั้ย</h2>
+    <input type="text" id="password" placeholder="Enter Password">
+    <button id="btnCheck">Check</button>
+
+    <script src="script.js"></script>
+</body>
+</html>]
+```
+
+```javascript
+
+//หาค่า BMI
+document.getElementById("btn").onclick = function() {
+    var weight = 55; // น้ำหนักเป็นกิโลกรัม
+    var height = 165; // ส่วนสูงเป็นเซนติเมตร
+    var heightInMeters = height / 100; // แปลงส่วนสูงเป็นเมตร
+    var bmi = weight / (heightInMeters * heightInMeters); // คำนวณค่า BMI
+    alert("ค่า BMI ของคุณคือ: " + bmi.toFixed(2)); // แสดงผลลัพธ์โดยปัดทศนิยม 2 ตำแหน่ง
+}
+    
+//ทักทายตามอายุ
+document.getElementById("btnFor2").onclick = function() {
+    var age = parseInt(document.getElementById("num").value);
+    if (isNaN(age)) {
+        alert("กรุณาใส่อายุที่ถูกต้อง");
+        return;
+    }
+    var greeting = "";
+    if (age < 0) {
+        greeting = "อายุไม่ถูกต้อง";
+    } else if (age <= 12) {
+        greeting = "สวัสดีเด็กน้อย!";
+    } else if (age <= 17) {
+        greeting = "สวัสดีวัยรุ่น!";
+    } else if (age <= 59) {
+        greeting = "สวัสดีผู้ใหญ่!";
+    } else {
+        greeting = "สวัสดีคุณปู่คุณย่า!";
+    }
+    alert(greeting);
+}
+
+
+//ตรวจสอบความยาวรหัสเกิน 8 ตัวมั้ย
+document.getElementById("btnCheck").onclick = function() {
+    var password = document.getElementById("password").value;
+    if (password.length > 8) {
+        alert("รหัสผ่านยาวเกิน 8 ตัว");
+    } else {
+        alert("รหัสผ่านไม่ถึงหรือเท่ากับ 8 ตัว");
+    }
+}
+
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 2.4.1](images/image.png)
+![รูปผลการทดลองที่ 2.4.1](imgEx/Ex5-1.png)
+![รูปผลการทดลองที่ 2.4.1](imgEx/Ex5-2.png)
+![รูปผลการทดลองที่ 2.4.1](imgEx/Ex5-3.png)
 
 
 
@@ -645,10 +715,101 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 2.4.2
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="tn">
+<head>
+    <meta charset="UTF-8">
+    
+</head>
+<body>
+    <h2>BMI</h2>
+    <input type="text" id="num1" placeholder="น้ำหนัก (กิโลกรัม)">
+    <input type="text" id="num2" placeholder="ส่วนสูง (เซนติเมตร)">
+
+    <button id="btn">BMI</button>
+    
+    <h2>ทักทายตามอายุ</h2>
+    <input type="text" id="num" placeholder="อายุของคุณ">
+    <button id="btnFor2">ทักทาย</button>
+
+
+    <h2>ตรวจสอบความยาวรหัสเกิน 8ตัวมั้ย</h2>
+    <input type="text" id="password" placeholder="Enter Password">
+    <button id="btnCheck">Check</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+```javascript
+
+//หาค่า BMI แบบ Arrow Function
+const calculateBMI = (weight, height) => {
+    const heightInMeters = height / 100; // แปลงส่วนสูงเป็นเมตร
+    return weight / (heightInMeters * heightInMeters); // คำนวณค่า BMI
+}
+
+document.getElementById("btn").onclick = function() {
+    var weight = parseFloat(document.getElementById("num1").value);
+    var height = parseFloat(document.getElementById("num2").value);
+    if (isNaN(weight) || isNaN(height)) {
+        alert("กรุณาใส่ข้อมูลที่ถูกต้อง");
+        return;
+    }
+    var bmi = calculateBMI(weight, height);
+    alert("ค่า BMI ของคุณคือ: " + bmi.toFixed(2));
+}
+
+//ทักทายตามอายุ แบบ Arrow Function
+const getGreeting = (age) => {
+    if (age < 0) {
+        return "อายุไม่ถูกต้อง";
+    } else if (age <= 12) {
+        return "สวัสดีเด็กน้อย!";
+    } else if (age <= 17) {
+        return "สวัสดีวัยรุ่น!";
+    } else if (age <= 59) {
+        return "สวัสดีผู้ใหญ่!";
+    } else {
+        return "สวัสดีคุณปู่คุณย่า!";
+    }
+
+}
+
+document.getElementById("btnFor2").onclick = function() {
+    var age = parseInt(document.getElementById("num").value);
+    if (isNaN(age)) {
+        alert("กรุณาใส่อายุที่ถูกต้อง");
+        return;
+    }
+    var greeting = getGreeting(age);
+    alert(greeting);
+}
+
+
+
+
+
+//ตรวจสอบความยาวรหัสเกิน 8 ตัวมั้ย แบบ Arrow Function
+const Cpasslength = (password) => {
+    if (password.length > 8) {
+        return "รหัสผ่านยาวเกิน 8 ตัว";
+    } else {
+        return "รหัสผ่านไม่ถึงหรือเท่ากับ 8 ตัว";
+    }
+}
+
+document.getElementById("btnCheck").onclick = function() {
+    var password = document.getElementById("password").value;
+    var result = Cpasslength(password);
+    alert(result);
+}
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 2.4.2](images/image.png)
+![รูปผลการทดลองที่ 2.4.2](imgEx/Ex6-1.png)
+![รูปผลการทดลองที่ 2.4.2](imgEx/Ex6-2.png)
+![รูปผลการทดลองที่ 2.4.2](imgEx/Ex6-3.png)
 
 
 ## การทดลองที่ 3 : การใช้ JavaScript กับ HTML และ CSS
@@ -716,10 +877,93 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 3.1
 ```html
-[บันทึกโค้ด ที่นี่]
+<!DOCTYPE html>
+<html lang="tn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="mama.css">
+</head>
+<body>
+    <h2>BMI</h2>
+    <input type="text" id="num1" placeholder="น้ำหนัก (กิโลกรัม)">
+    <input type="text" id="num2" placeholder="ส่วนสูง (เซนติเมตร)">
+
+    <button id="btn">BMI</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+```css
+body {
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+input:hover {
+    border-color: #4CAF50;
+}
+
+
+```
+```javascript
+
+//หาค่า BMI แบบ Arrow Function แสดง อ้วน, ผอม หรือ สมส่วน 
+const calculateBMI = (weight, height) => {
+    const heightInMeters = height / 100; // แปลงส่วนสูงเป็นเมตร
+    return weight / (heightInMeters * heightInMeters); // คำนวณค่า BMI
+}
+
+document.getElementById("btn").onclick = function() {
+    var weight = parseFloat(document.getElementById("num1").value);
+    var height = parseFloat(document.getElementById("num2").value);
+    if (isNaN(weight) || isNaN(height)) {
+        alert("กรุณาใส่ข้อมูลที่ถูกต้อง");
+        return;
+    }
+    var bmi = calculateBMI(weight, height);
+    var category = "";
+    if (bmi < 18.5) {
+        category = "ผอม";
+    } else if (bmi < 25) {
+        category = "สมส่วน";
+    } else {
+        category = "อ้วน";
+    }
+    alert("ค่า BMI ของคุณคือ: " + bmi.toFixed(2) + " (" + category + ")");
+}
 ```
 **รูปผลการทดลอง**
-![รูปผลการทดลองที่ 3.1](images/image.png)
+![รูปผลการทดลองที่ 3.1](imgEx/Ex7.png)
 
 ## การทดลองที่ 3.2 : การสร้างฟอร์มสำหรับจองห้องพัก
 การสร้างฟอร์มลงทะเบียนเพื่อรวบรวมข้อมูลที่จำเป็นสำหรับการจองห้องพัก
